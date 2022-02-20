@@ -30,8 +30,9 @@ public class Catalog {
     @Size(min=3, max=100)
     private String  author;
 
+    @NotNull
     @Size(min=1, max=100)
-    private int totalep;
+    private String totalep;
 
 
     public long getIdCatalog() {
@@ -58,11 +59,11 @@ public class Catalog {
         this.author = author;
     }
 
-    public int getTotalep() {
+    public String getTotalep() {
         return totalep;
     }
 
-    public void setTotalep(int totalep) {
+    public void setTotalep(String totalep) {
         this.totalep = totalep;
     }
 

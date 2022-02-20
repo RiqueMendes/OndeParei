@@ -28,39 +28,42 @@ import com.ondeparei.OndeParei.repository.CatalogRepository;
     public class CatalogController {
 
         @Autowired
-        private CatalogRepository repository1;
+        private CatalogRepository repository;
 
         @GetMapping
         public ResponseEntity<List<Catalog>> GetAll(){
             
-            return ResponseEntity.ok(repository1.findAll());
+            return ResponseEntity.ok(repository.findAll());
 
         }
         
         @GetMapping("/{id}")
         public ResponseEntity<Catalog> GetById(@PathVariable long id) {
 
-            return repository1.findById(id)
+            return repository.findById(id)
                     .map(resp -> ResponseEntity.ok(resp))
                     .orElse(ResponseEntity.notFound().build());
                     
         }
-         /*@GetMapping ("/cat_name/{cat_name}")
-        public ResponseEntity <List<Catalog>>GetByCat_name(@PathVariable String cat_name){
-                return ResponseEntity.ok(repository.findAllbyNameContainingIgnoreCase(cat_name));
+         @GetMapping ("/author/{author}")
+        public ResponseEntity <List<Catalog>>GetByCat_name(@PathVariable String author){
+                return ResponseEntity.ok(repository.findAllByAuthorContainingIgnoreCase(author));
         }
+        
         @PostMapping
             public ResponseEntity<Catalog> post (@RequestBody Catalog catalog){
                 return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(catalog));
-            }
+        }
+        
         @PutMapping
         public ResponseEntity<Catalog> put (@RequestBody Catalog catalog){
             return ResponseEntity.status(HttpStatus.OK).body(repository.save(catalog));
         }
+        
         @DeleteMapping("/{id}")
         public void delete (@PathVariable long id){
             repository.deleteById(id);
-        } */
+        } 
 
 
     }
